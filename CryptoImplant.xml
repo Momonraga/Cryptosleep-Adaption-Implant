@@ -1,0 +1,105 @@
+<Defs>
+
+    <!-- Research Project -->
+    <ResearchProjectDef>
+        <defName>CryptoWakeResearch</defName>
+        <label>cryptosleep adaptation</label>
+        <description>Develop specialized mechanite implants that prepare the human metabolic system for the shock of exiting stasis, effectively neutralizing cryptosleep sickness.</description>
+        <baseCost>500</baseCost>
+        <techLevel>Spacer</techLevel>
+        <prerequisites>
+            <li>Cryptosleep</li>
+        </prerequisites>
+        <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+        <requiredResearchFacilities>
+            <li>MultiAnalyzer</li>
+        </requiredResearchFacilities>
+        <researchViewX>18.00</researchViewX>
+        <researchViewY>2.40</researchViewY>
+    </ResearchProjectDef>
+
+    <!-- Hediff (The Effect) -->
+    <HediffDef>
+        <defName>CryptosleepAdaptationImplant</defName>
+        <hediffClass>HediffWithComps</hediffClass>
+        <label>cryptosleep adaptation implant</label>
+        <description>A mechanite implant that neutralizes cryptosleep sickness upon waking from stasis.</description>
+        <defaultLabelColor>(0.5,0.8,1)</defaultLabelColor>
+        <isBad>false</isBad>
+        <stages>
+            <li>
+                <makeImmuneTo>
+                    <li>CryptosleepSickness</li>
+                </makeImmuneTo>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <!-- ThingDef (The Item) -->
+    <ThingDef ParentName="BodyPartProstheticMakeableBase">
+        <defName>CryptosleepAdaptationImplant</defName>
+        <label>cryptosleep adaptation implant</label>
+        <description>A specialized mechanite dispenser implant that keeps the body in tip top shape during stasis.</description>
+        <descriptionHyperlinks>
+            <RecipeDef>InstallCryptosleepAdaptationImplant</RecipeDef>
+        </descriptionHyperlinks>
+        <costList>
+            <Steel>50</Steel>
+            <ComponentSpacer>1</ComponentSpacer>
+        </costList>
+        <recipeMaker>
+            <researchPrerequisite>CryptoWakeResearch</researchPrerequisite>
+            <recipeUsers>
+                <li>FabricationBench</li>
+            </recipeUsers>
+        </recipeMaker>
+        <techHediffsTags>
+            <li>Advanced</li>
+        </techHediffsTags>
+    </ThingDef>
+
+    <!-- Install Recipe -->
+    <RecipeDef ParentName="SurgeryInstallImplantBase">
+        <defName>InstallCryptosleepAdaptationImplant</defName>
+        <label>install cryptosleep adaptation implant</label>
+        <description>Install a cryptosleep adaptation implant.</description>
+        <descriptionHyperlinks>
+            <ThingDef>CryptosleepAdaptationImplant</ThingDef>
+            <HediffDef>CryptosleepAdaptationImplant</HediffDef>
+        </descriptionHyperlinks>
+        <jobString>Installing cryptosleep adaptation implant.</jobString>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>CryptosleepAdaptationImplant</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>CryptosleepAdaptationImplant</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <appliedOnFixedBodyParts>
+            <li>Torso</li>
+        </appliedOnFixedBodyParts>
+        <addsHediff>CryptosleepAdaptationImplant</addsHediff>
+    </RecipeDef>
+
+    <!-- Remove Recipe -->
+    <RecipeDef ParentName="SurgeryRemoveImplantBase">
+        <defName>RemoveCryptosleepAdaptationImplant</defName>
+        <label>remove cryptosleep adaptation implant</label>
+        <description>Remove the cryptosleep adaptation implant.</description>
+        <descriptionHyperlinks>
+            <ThingDef>CryptosleepAdaptationImplant</ThingDef>
+            <HediffDef>CryptosleepAdaptationImplant</HediffDef>
+        </descriptionHyperlinks>
+        <jobString>Removing cryptosleep adaptation implant.</jobString>
+        <removesHediff>CryptosleepAdaptationImplant</removesHediff>
+    </RecipeDef>
+
+</Defs>
